@@ -1,14 +1,17 @@
 const conexao = require('../conexao')
 
-const executaQuery = (res, query) => {
-  conexao.query(query, (erro, resultados, campos) => {
-    if (erro) {
-      res.json(erro)
-    } else {
-      res.json(resultados)
-    }
+const executaQuery = (query) => {
+  return new Promise ((resolve, reject)=>{
 
-   console.log('executou a query!')
+    return conexao.query(query, (erro, resultados, campos) => {
+      console.log('executou a query!')
+      if (erro) {
+        rejec(erro)
+      } else {
+        resolve(resultados)
+      }
+  
+    })
   })
 }
 
