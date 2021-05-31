@@ -1,10 +1,10 @@
 const executaQuery = require('../database/queries')
 
 class Pet {
-  lista(res) {
+  lista() {
     const sql = 'SELECT * FROM Pets'
 
-    executaQuery(res, sql)
+    return executaQuery( sql)
   }
 
   buscaPorId(res, id) {
@@ -24,18 +24,18 @@ class Pet {
     }))
   }
 
-  atualiza(res, novoItem, id) {
-    const { nome, dono, tipo, observacoes } = novoItem
+  atualiza(novoItem) {
+    const {id, nome, donoId, tipo, observacoes } = novoItem
 
-    const sql = `UPDATE Pets SET nome='${nome}', donoId=${dono}, tipo='${tipo}', observacoes='${observacoes}' WHERE id=${id}`
+    const sql = `UPDATE Pets SET nome='${nome}', donoId=${donoId}, tipo='${tipo}', observacoes='${observacoes}' WHERE id=${id}`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(() => novoItem)
   }
 
-  deleta(res, id) {
+  deleta(id) {
     const sql = `DELETE FROM Pets WHERE id=${id}`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(()=>id)
   }
 }
 
