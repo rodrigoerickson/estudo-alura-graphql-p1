@@ -14,6 +14,7 @@ conexao.connect(erro => {
 })
 
 const Clientes = new Operacoes('cliente');
+const Pets = new Operacoes('pet');
 
 const resolvers = {
   Query:{
@@ -24,7 +25,8 @@ const resolvers = {
   Mutation:{
     adicionarCliente: (root, params)=> Clientes.adiciona(params),
     atualizarCliente: (root, params)=> Clientes.atualiza(params),
-    deletarCliente: (root, {id}) => Clientes.deleta(id)
+    deletarCliente: (root, {id}) => Clientes.deleta(id),
+    adicionarPet: (root, params) => Pets.adiciona(params)
   }
 }
 
