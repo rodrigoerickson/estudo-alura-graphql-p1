@@ -6,7 +6,7 @@ const executaQuery = (query) => {
     return conexao.query(query, (erro, resultados, campos) => {
       console.log('executou a query!')
       if (erro) {
-        rejec(erro)
+        reject(erro)
       } else {
         resolve(resultados)
       }
