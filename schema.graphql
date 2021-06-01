@@ -31,4 +31,5 @@ type Query{
     clientes:[Cliente!]!
     cliente(id:ID!):Cliente!
     pets:[Pet!]!
+    pet(id:ID!):Pet!
 }
