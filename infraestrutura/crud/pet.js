@@ -54,9 +54,16 @@ class Pet {
   atualiza(novoItem) {
     const {id, nome, donoId, tipo, observacoes } = novoItem
 
-    const sql = `UPDATE Pets SET nome='${nome}', donoId=${donoId}, tipo='${tipo}', observacoes='${observacoes}' WHERE id=${id}`
+    const sql = `UPDATE Pets SET nome='${nome}', donoId=${donoId}, tipo='${tipo}', observacoes='${observacoes}' WHERE id=${id};
+    SELECT * FROM Clientes WHERE id=${donoId};`
 
-    return executaQuery(sql).then(() => novoItem)
+    return executaQuery(sql).then(dados =>{
+      const dono = dados[1][0];
+      return ({
+        ...novoItem,
+        dono
+      })
+    })
   }
 
   deleta(id) {
